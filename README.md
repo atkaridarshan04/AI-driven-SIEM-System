@@ -47,7 +47,7 @@
 ## 🏗️ System Architecture
 
 
-<img src="image.png">
+<img src="model/documentation/CompleteArchitecture.png">
 
 
 ### Core Components
