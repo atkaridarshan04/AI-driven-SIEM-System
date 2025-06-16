@@ -10,7 +10,7 @@
 [![Kafka](https://img.shields.io/badge/Apache%20Kafka-2.8+-orange.svg)](https://kafka.apache.org)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-*Enables scalable, real-time threat monitoring and response by unifying network traffic analysis, log insights, and centralized security management.*
+*Enables scalable, real-time threat monitoring and response by unifying log anomaly detection, severity analysis, type classification and centralized security management.*
 
 </div>
 
