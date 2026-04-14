@@ -143,7 +143,7 @@ class LogParser:
         regex = ""
         for k in range(len(splitters)):
             if k % 2 == 0:
-                splitter = re.sub(" +", "\\\s+", splitters[k])
+                splitter = re.sub(" +", r"\s+", splitters[k])
                 regex += splitter
             else:
                 header = splitters[k].strip("<").strip(">")
@@ -219,10 +219,10 @@ class LogParser:
             if dataset == "HealthApp":
                 s = re.sub(":", ": ", s)
                 s = re.sub("=", "= ", s)
-                s = re.sub("\|", "| ", s)
+                s = re.sub(r"\|", "| ", s)
             if dataset == "Android":
-                s = re.sub("\(", "( ", s)
-                s = re.sub("\)", ") ", s)
+                s = re.sub(r"\(", "( ", s)
+                s = re.sub(r"\)", ") ", s)
             if dataset == "Android":
                 s = re.sub(":", ": ", s)
                 s = re.sub("=", "= ", s)
@@ -232,15 +232,15 @@ class LogParser:
                 s = re.sub(":", ": ", s)
             if dataset == "BGL":
                 s = re.sub("=", "= ", s)
-                s = re.sub("\.\.", ".. ", s)
-                s = re.sub("\(", "( ", s)
-                s = re.sub("\)", ") ", s)
+                s = re.sub(r"\.\.", ".. ", s)
+                s = re.sub(r"\(", "( ", s)
+                s = re.sub(r"\)", ") ", s)
             if dataset == "Hadoop":
                 s = re.sub("_", "_ ", s)
                 s = re.sub(":", ": ", s)
                 s = re.sub("=", "= ", s)
-                s = re.sub("\(", "( ", s)
-                s = re.sub("\)", ") ", s)
+                s = re.sub(r"\(", "( ", s)
+                s = re.sub(r"\)", ") ", s)
             if dataset == "HDFS":
                 s = re.sub(":", ": ", s)
             if dataset == "Linux":
@@ -254,7 +254,7 @@ class LogParser:
             if dataset == "Windows":
                 s = re.sub(":", ": ", s)
                 s = re.sub("=", "= ", s)
-                s = re.sub("\[", "[ ", s)
+                s = re.sub(r"\[", "[ ", s)
                 s = re.sub("]", "] ", s)
             if dataset == "Zookeeper":
                 s = re.sub(":", ": ", s)
@@ -500,7 +500,7 @@ class format_log:  # this part of code is from LogPai https://github.com/LogPai
         regex = ""
         for k in range(len(splitters)):
             if k % 2 == 0:
-                splitter = re.sub(" +", "\\\s+", splitters[k])
+                splitter = re.sub(" +", r"\s+", splitters[k])
                 regex += splitter
             else:
                 header = splitters[k].strip("<").strip(">")

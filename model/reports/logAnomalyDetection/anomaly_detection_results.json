@@ -1,0 +1,10 @@
+{
+  "metadata": {
+    "timestamp": "2026-04-14T21:07:22.211555",
+    "total_logs": 69,
+    "pipeline_version": "1.5",
+    "threshold": 16.237964863796797,
+    "threshold_percentile": 95
+  },
+  "anomalies": []
+}

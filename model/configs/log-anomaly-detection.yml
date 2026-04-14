@@ -32,7 +32,7 @@ parsing:
 # Hybrid detection configuration
 detection:
   # Model and artifact paths
-  model_path: "src/logAnomalyDetection/LSTM_AE/"
+  model_path: "artifacts/"
   output_path: "reports/logAnomalyDetection/"
   
   # Hybrid processing parameters
