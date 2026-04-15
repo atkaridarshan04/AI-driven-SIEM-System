@@ -70,12 +70,4 @@ class EnsembleDetector:
                 errors.extend(torch.mean((batch - recon) ** 2, dim=(1, 2)).numpy())
         return np.array(errors)
 
-    def update_weights(self, val_losses: list):
-        """Recompute ensemble weights: lower val loss → higher weight."""
-        inv = np.array([1.0 / (v + 1e-8) for v in val_losses])
-        self.weights = (inv / inv.sum()).tolist()
-        print(f"✅ Ensemble weights: {[round(w, 4) for w in self.weights]}")
 
-
-# Legacy alias
-HybridEnsembleDetector = EnsembleDetector

@@ -145,5 +145,3 @@ class LabeledLDAClassifier:
                 for d in log_data_list]
 
 
-# Legacy alias
-RuleBasedLogClassifier = LabeledLDAClassifier

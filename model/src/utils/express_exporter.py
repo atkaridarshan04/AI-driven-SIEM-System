@@ -32,7 +32,6 @@ class ExpressExporter:
                         'severity': anomaly['severity'],
                         'confidence': anomaly['confidence'],
                         'anomaly_score': anomaly['anomaly_score'],
-                        'processing_mode': anomaly['processing_mode'],
                         'timestamp': anomaly['timestamp']
                     }
                 else:  # Single log anomaly
@@ -42,7 +41,6 @@ class ExpressExporter:
                         'severity': anomaly['severity'],
                         'confidence': anomaly['confidence'],
                         'anomaly_score': anomaly['anomaly_score'],
-                        'processing_mode': anomaly['processing_mode'],
                         'timestamp': anomaly['timestamp']
                     }
                 

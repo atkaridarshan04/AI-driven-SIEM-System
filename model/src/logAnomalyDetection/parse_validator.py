@@ -36,16 +36,3 @@ def validate(csv_path: str) -> dict:
         'warnings': warnings,
     }
 
-
-def stats(csv_path: str) -> dict:
-    """Return summary statistics about a parsed CSV."""
-    try:
-        df = pd.read_csv(csv_path)
-        return {
-            'total_logs':        len(df),
-            'unique_templates':  df['EventTemplate'].nunique() if 'EventTemplate' in df.columns else 0,
-            'unique_components': df['Component'].nunique()     if 'Component'     in df.columns else 0,
-            'log_levels':        df['Level'].value_counts().to_dict() if 'Level' in df.columns else {},
-        }
-    except Exception as e:
-        return {'error': str(e)}

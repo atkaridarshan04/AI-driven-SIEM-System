@@ -25,5 +25,3 @@ class SequentialLSTMAutoencoder(nn.Module):
         return self.output(dec_out), attn
 
 
-# Legacy alias — keeps old pickle references alive
-HybridAttentionLSTMAutoencoder = SequentialLSTMAutoencoder

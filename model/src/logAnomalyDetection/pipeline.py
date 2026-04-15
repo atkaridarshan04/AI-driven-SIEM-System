@@ -172,6 +172,3 @@ class AnomalyDetectionPipeline:
         print(f"📁 Results saved to {out_file}")
         return str(out_dir)
 
-
-# Backward-compatible alias
-LogAnomalyDetectionPipeline = AnomalyDetectionPipeline

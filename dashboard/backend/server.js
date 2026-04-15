@@ -48,7 +48,6 @@ const logSchema = new mongoose.Schema({
   severity: String,
   confidence: Number,
   anomaly_score: Number,
-  processing_mode: String,
   timestamp: String // Stored as HH:MM:SS string
 });
 
@@ -88,7 +87,6 @@ app.post('/api/logs', async (req, res) => {
       severity: entry.severity,
       confidence: entry.confidence,
       anomaly_score: entry.anomaly_score,
-      processing_mode: entry.processing_mode,
       timestamp: entry.timestamp || new Date().toISOString().slice(11, 19) // fallback: HH:MM:SS
     }));
 
