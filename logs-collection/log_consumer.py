@@ -1,16 +1,18 @@
 import json
+import os
 import re
 from confluent_kafka import Consumer
 
+KAFKA_HOST = os.getenv("KAFKA_HOST", "localhost")
+
 # Kafka Consumer Configuration
 consumer = Consumer({
-    'bootstrap.servers': '192.168.37.132:9092',
+    'bootstrap.servers': f'{KAFKA_HOST}:9092',
     'group.id': 'log-consumer-group',
     'auto.offset.reset': 'latest'
-    # 'auto.offset.reset': 'earliest'
 })
 
-consumer.subscribe(['server-logs'])
+consumer.subscribe(['raw-logs'])
 
 # Regex Patterns
 auth_pattern = r'(?P<timestamp>\w+ \d+ \d+:\d+:\d+) (?P<hostname>[\w\-.]+) (?P<process>[\w\-]+)(\[(?P<pid>\d+)\])?: (?P<message>.*)'

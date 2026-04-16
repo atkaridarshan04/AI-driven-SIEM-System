@@ -1,0 +1,136 @@
+{
+  "title": "SIEM Overview",
+  "uid": "siem-overview",
+  "timezone": "browser",
+  "time": { "from": "now-24h", "to": "now" },
+  "refresh": "30s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "Total Log Events",
+      "type": "stat",
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 },
+      "datasource": { "type": "elasticsearch", "uid": "P31C819B24CF3C3C7" },
+      "targets": [{
+        "refId": "A",
+        "query": "*",
+        "metrics": [{ "type": "count", "id": "1" }],
+        "bucketAggs": [{ "type": "date_histogram", "id": "2", "field": "@timestamp", "settings": { "interval": "auto", "min_doc_count": "0" } }]
+      }],
+      "options": { "reduceOptions": { "calcs": ["sum"] }, "colorMode": "background", "graphMode": "none" },
+      "fieldConfig": { "defaults": { "color": { "mode": "fixed", "fixedColor": "blue" } } }
+    },
+    {
+      "id": 2,
+      "title": "MITRE Tagged Events",
+      "type": "stat",
+      "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 },
+      "datasource": { "type": "elasticsearch", "uid": "P31C819B24CF3C3C7" },
+      "targets": [{
+        "refId": "A",
+        "query": "mitre_tactic:*",
+        "metrics": [{ "type": "count", "id": "1" }],
+        "bucketAggs": [{ "type": "date_histogram", "id": "2", "field": "@timestamp", "settings": { "interval": "auto", "min_doc_count": "0" } }]
+      }],
+      "options": { "reduceOptions": { "calcs": ["sum"] }, "colorMode": "background", "graphMode": "none" },
+      "fieldConfig": { "defaults": { "color": { "mode": "fixed", "fixedColor": "orange" } } }
+    },
+    {
+      "id": 3,
+      "title": "Credential Access (T1110)",
+      "type": "stat",
+      "gridPos": { "x": 12, "y": 0, "w": 6, "h": 4 },
+      "datasource": { "type": "elasticsearch", "uid": "P31C819B24CF3C3C7" },
+      "targets": [{
+        "refId": "A",
+        "query": "mitre_tactic:\"Credential Access\"",
+        "metrics": [{ "type": "count", "id": "1" }],
+        "bucketAggs": [{ "type": "date_histogram", "id": "2", "field": "@timestamp", "settings": { "interval": "auto", "min_doc_count": "0" } }]
+      }],
+      "options": { "reduceOptions": { "calcs": ["sum"] }, "colorMode": "background", "graphMode": "none" },
+      "fieldConfig": { "defaults": { "color": { "mode": "fixed", "fixedColor": "red" } } }
+    },
+    {
+      "id": 4,
+      "title": "Privilege Escalation (T1078)",
+      "type": "stat",
+      "gridPos": { "x": 18, "y": 0, "w": 6, "h": 4 },
+      "datasource": { "type": "elasticsearch", "uid": "P31C819B24CF3C3C7" },
+      "targets": [{
+        "refId": "A",
+        "query": "mitre_tactic:\"Privilege Escalation\"",
+        "metrics": [{ "type": "count", "id": "1" }],
+        "bucketAggs": [{ "type": "date_histogram", "id": "2", "field": "@timestamp", "settings": { "interval": "auto", "min_doc_count": "0" } }]
+      }],
+      "options": { "reduceOptions": { "calcs": ["sum"] }, "colorMode": "background", "graphMode": "none" },
+      "fieldConfig": { "defaults": { "color": { "mode": "fixed", "fixedColor": "purple" } } }
+    },
+    {
+      "id": 5,
+      "title": "Log Events Over Time",
+      "type": "timeseries",
+      "gridPos": { "x": 0, "y": 4, "w": 24, "h": 8 },
+      "datasource": { "type": "elasticsearch", "uid": "P31C819B24CF3C3C7" },
+      "targets": [{
+        "refId": "A",
+        "query": "*",
+        "metrics": [{ "type": "count", "id": "1" }],
+        "bucketAggs": [{ "type": "date_histogram", "id": "2", "field": "@timestamp", "settings": { "interval": "auto", "min_doc_count": "0" } }]
+      }],
+      "fieldConfig": { "defaults": { "custom": { "lineWidth": 2, "fillOpacity": 10 } } }
+    },
+    {
+      "id": 6,
+      "title": "MITRE Tactics Breakdown",
+      "type": "piechart",
+      "gridPos": { "x": 0, "y": 12, "w": 8, "h": 8 },
+      "datasource": { "type": "elasticsearch", "uid": "P31C819B24CF3C3C7" },
+      "targets": [{
+        "refId": "A",
+        "query": "mitre_tactic:*",
+        "metrics": [{ "type": "count", "id": "1" }],
+        "bucketAggs": [{ "type": "terms", "id": "2", "field": "mitre_tactic.keyword", "settings": { "size": "10", "order": "desc", "orderBy": "1" } }]
+      }]
+    },
+    {
+      "id": 7,
+      "title": "MITRE Events Over Time",
+      "type": "timeseries",
+      "gridPos": { "x": 8, "y": 12, "w": 16, "h": 8 },
+      "datasource": { "type": "elasticsearch", "uid": "P31C819B24CF3C3C7" },
+      "targets": [{
+        "refId": "A",
+        "query": "mitre_tactic:*",
+        "alias": "{{mitre_tactic.keyword}}",
+        "metrics": [{ "type": "count", "id": "1" }],
+        "bucketAggs": [
+          { "type": "terms", "id": "3", "field": "mitre_tactic.keyword", "settings": { "size": "5", "order": "desc", "orderBy": "1" } },
+          { "type": "date_histogram", "id": "2", "field": "@timestamp", "settings": { "interval": "auto", "min_doc_count": "0" } }
+        ]
+      }]
+    },
+    {
+      "id": 8,
+      "title": "Recent Security Events (click a row to expand)",
+      "type": "logs",
+      "gridPos": { "x": 0, "y": 20, "w": 24, "h": 12 },
+      "datasource": { "type": "elasticsearch", "uid": "P31C819B24CF3C3C7" },
+      "targets": [{
+        "refId": "A",
+        "query": "mitre_tactic:*",
+        "metrics": [{ "type": "logs", "id": "1", "settings": { "limit": "500" } }],
+        "bucketAggs": []
+      }],
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "sortOrder": "Descending",
+        "wrapLogMessage": true,
+        "prettifyLogMessage": false,
+        "showTime": true,
+        "showLabels": true,
+        "showCommonLabels": false
+      }
+    }
+  ]
+}
